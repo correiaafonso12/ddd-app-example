@@ -7,23 +7,16 @@ import jakarta.persistence.MappedSuperclass;
 
 /**
  * Schema abstraction that automatically generates a primary key
+ * The database primary key and the domain entity id should not match, to avoid
+ * exposing database information
  */
 @MappedSuperclass
 public abstract class BaseSchema {
 
-    /**
-     * Primary Key
-     */
+    // TODO: Enforce random positive long Id generation
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long pk;
+    private long primaryKey;
 
-    public Long getPrimaryKey() {
-        return pk;
-    }
-
-    @Override
-    public int hashCode() {
-        return getPrimaryKey() != null ? getPrimaryKey().hashCode() : 0;
-    }
 }
