@@ -2,8 +2,6 @@ package app.ddd.gsandwiches.shared.api.handlers;
 
 import static org.springframework.http.ResponseEntity.badRequest;
 
-import java.util.stream.Collectors;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +15,7 @@ import app.ddd.gsandwiches.shared.api.dto.response.ErrorResponseDto;
 @ControllerAdvice
 public class MethodArgumentNotValidExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private final String MISSING_FIELD_MESSAGE = "'Field %s is mandatory'";
+    private final String MISSING_FIELD_MESSAGE = "Field %s is mandatory";
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
@@ -30,7 +28,7 @@ public class MethodArgumentNotValidExceptionHandler extends ResponseEntityExcept
                 .getFieldErrors()
                 .stream()
                 .map(err -> MISSING_FIELD_MESSAGE.formatted(err.getField()))
-                .collect(Collectors.joining("; ", "[", "]"));
+                .toList();
 
         var body = new ErrorResponseDto(ex, errors);
 
