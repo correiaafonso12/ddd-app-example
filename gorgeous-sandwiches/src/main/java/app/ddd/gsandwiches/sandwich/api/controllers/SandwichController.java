@@ -19,15 +19,17 @@ import app.ddd.gsandwiches.sandwich.domain.valueobjects.Description;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.Name;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.Price;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.SandwichId;
-import app.ddd.gsandwiches.shared.api.controllers.BaseController;
+import app.ddd.gsandwiches.shared.api.handlers.ExceptionHandler;
 
 @RestController
-class SandwichController extends BaseController implements SandwichApi {
+class SandwichController implements SandwichApi {
 
     private final SandwichService service;
+    private final ExceptionHandler exceptionHandler;
 
-    public SandwichController(SandwichService service) {
+    public SandwichController(SandwichService service, ExceptionHandler exceptionHandler) {
         this.service = service;
+        this.exceptionHandler = exceptionHandler;
     }
 
     @Override
@@ -54,7 +56,7 @@ class SandwichController extends BaseController implements SandwichApi {
 
         return service.create(sandwich).fold(
                 () -> handleCreated(dto.sandwichId()),
-                this::handleException);
+                exceptionHandler::handle);
     }
 
     private ResponseEntity<Object> handleCreated(Long id) {

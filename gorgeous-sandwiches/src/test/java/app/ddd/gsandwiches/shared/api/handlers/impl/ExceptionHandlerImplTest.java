@@ -1,4 +1,4 @@
-package app.ddd.gsandwiches.shared.api.controllers;
+package app.ddd.gsandwiches.shared.api.handlers.impl;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -11,25 +11,24 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatusCode;
 
+import app.ddd.gsandwiches.shared.api.handlers.ExceptionHandler;
 import app.ddd.gsandwiches.shared.application.exceptions.ApplicationException;
 import app.ddd.gsandwiches.shared.application.exceptions.ConflictException;
 
-public abstract class BaseControllerTest<T extends BaseController> {
+public class ExceptionHandlerImplTest {
 
-    private T instance;
-
-    protected abstract T createInstance();
+    private ExceptionHandler exceptionHandler;
 
     @BeforeEach
     public void setup() {
-        instance = createInstance();
+        exceptionHandler = new ExceptionHandlerImpl();
     }
 
     @Test
     void testHandleExceptionWithConflictException() {
         var exception = mock(ConflictException.class);
         when(exception.getMessage()).thenReturn("smt");
-        var response = instance.handleException(exception);
+        var response = exceptionHandler.handle(exception);
         assertTrue(
                 response.getStatusCode().isSameCodeAs(HttpStatusCode.valueOf(CONFLICT.value())),
                 "Response should contain Conflict status code");
@@ -39,7 +38,7 @@ public abstract class BaseControllerTest<T extends BaseController> {
     void testHandleExceptionWithBadRequestException() {
         var exception = mock(ApplicationException.class);
         when(exception.getMessage()).thenReturn("smt");
-        var response = instance.handleException(exception);
+        var response = exceptionHandler.handle(exception);
         assertTrue(
                 response.getStatusCode().isSameCodeAs(HttpStatusCode.valueOf(BAD_REQUEST.value())),
                 "Response should contain Bad Request status code");
@@ -49,10 +48,10 @@ public abstract class BaseControllerTest<T extends BaseController> {
     void testHandleExceptionWithInternalServerErrorException() {
         var exception = mock(RuntimeException.class);
         when(exception.getMessage()).thenReturn("smt");
-        var response = instance.handleException(exception);
+        var response = exceptionHandler.handle(exception);
         assertTrue(
                 response.getStatusCode().isSameCodeAs(HttpStatusCode.valueOf(INTERNAL_SERVER_ERROR.value())),
                 "Response should contain Bad Request status code");
     }
-
+    
 }

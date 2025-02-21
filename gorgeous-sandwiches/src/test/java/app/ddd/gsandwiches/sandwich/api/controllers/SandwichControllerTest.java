@@ -1,8 +1,6 @@
 package app.ddd.gsandwiches.sandwich.api.controllers;
 
-import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_DESCRIPTION;
-import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_NAME;
-import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_PRICE;
+import static app.ddd.gsandwiches.sandwich.api.SandwichDtosTestFixture.EXPECTED_CREATE_SANDWICH_DTO;
 import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_SANDWICH;
 import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_SANDWICH_ID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,6 +12,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.ResponseEntity.badRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,26 +24,22 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import app.ddd.gsandwiches.sandwich.api.dto.request.CreateSandwichDto;
 import app.ddd.gsandwiches.sandwich.application.SandwichService;
-import app.ddd.gsandwiches.shared.api.controllers.BaseControllerTest;
+import app.ddd.gsandwiches.shared.api.dto.response.ErrorResponseDto;
+import app.ddd.gsandwiches.shared.api.handlers.ExceptionHandler;
 import app.ddd.gsandwiches.shared.application.result.Result;
 
-public class SandwichControllerTest extends BaseControllerTest<SandwichController> {
+public class SandwichControllerTest {
 
     private SandwichService serviceMock;
+    private ExceptionHandler exceptionHandlerMock;
     private SandwichController controller;
 
     @BeforeEach
     public void init() {
         serviceMock = mock(SandwichService.class);
-        controller = new SandwichController(serviceMock);
-    }
-
-    @Override
-    protected SandwichController createInstance() {
-        init();
-        return controller;
+        exceptionHandlerMock = mock(ExceptionHandler.class);
+        controller = new SandwichController(serviceMock, exceptionHandlerMock);
     }
 
     @Test
@@ -85,9 +80,9 @@ public class SandwichControllerTest extends BaseControllerTest<SandwichControlle
 
     @Test
     void testCreateFailed() {
-        var dto = new CreateSandwichDto(EXPECTED_SANDWICH_ID.value(), EXPECTED_NAME.value(), EXPECTED_PRICE.value(), EXPECTED_DESCRIPTION.value());
         when(serviceMock.create(any())).thenReturn(Result.empty().verify(() -> false, Exception::new));
-        var response = controller.create(dto);
+        when(exceptionHandlerMock.handle(any())).thenReturn(badRequest().body(new ErrorResponseDto(new Exception())));
+        var response = controller.create(EXPECTED_CREATE_SANDWICH_DTO);
         assertFalse(
                 response.getStatusCode().isSameCodeAs(HttpStatusCode.valueOf(CREATED.value())),
                 "Response should not be Created");
@@ -96,11 +91,10 @@ public class SandwichControllerTest extends BaseControllerTest<SandwichControlle
 
     @Test
     void testCreateSuccessful() {
-        var dto = new CreateSandwichDto(EXPECTED_SANDWICH_ID.value(), EXPECTED_NAME.value(), EXPECTED_PRICE.value(), EXPECTED_DESCRIPTION.value());
         when(serviceMock.create(any())).thenReturn(Result.empty());
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-        var response = controller.create(dto);
+        var response = controller.create(EXPECTED_CREATE_SANDWICH_DTO);
         assertTrue(
                 response.getStatusCode().isSameCodeAs(HttpStatusCode.valueOf(CREATED.value())),
                 "Response should be Created");

@@ -1,27 +1,28 @@
-package app.ddd.gsandwiches.shared.api.controllers;
+package app.ddd.gsandwiches.shared.api.handlers.impl;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.ResponseEntity.badRequest;
 import static org.springframework.http.ResponseEntity.internalServerError;
+import static org.springframework.http.ResponseEntity.status;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 import app.ddd.gsandwiches.shared.api.dto.response.ErrorResponseDto;
+import app.ddd.gsandwiches.shared.api.handlers.ExceptionHandler;
 import app.ddd.gsandwiches.shared.application.exceptions.ApplicationException;
 import app.ddd.gsandwiches.shared.application.exceptions.ConflictException;
 
-/**
- * Base Controller to centralize error handling without throwing custom
- * exceptions
- */
-public abstract class BaseController {
+@Component
+class ExceptionHandlerImpl implements ExceptionHandler {
 
-    protected ResponseEntity<ErrorResponseDto> handleException(Exception e) {
+    @Override
+    public ResponseEntity<ErrorResponseDto> handle(Exception e) {
         var dto = new ErrorResponseDto(e);
 
         // 409 Conflict
         if (e instanceof ConflictException) {
-            return ResponseEntity.status(CONFLICT).body(dto);
+            return status(CONFLICT).body(dto);
         }
         // 400 Bad Request
         if (e instanceof ApplicationException) {
