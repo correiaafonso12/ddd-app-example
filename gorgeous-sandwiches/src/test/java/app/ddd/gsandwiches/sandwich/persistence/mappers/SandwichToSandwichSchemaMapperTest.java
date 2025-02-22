@@ -1,4 +1,4 @@
-package app.ddd.gsandwiches.sandwich.persistence.mapper;
+package app.ddd.gsandwiches.sandwich.persistence.mappers;
 
 import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_SANDWICH;
 import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_SANDWICH_ID;
@@ -9,40 +9,40 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class SandwichMapperTest {
+public class SandwichToSandwichSchemaMapperTest {
 
-    private SandwichMapper mapper;
+    private SandwichToSandwichSchemaMapper mapper;
 
     @BeforeEach
     public void setup() {
-        mapper = new SandwichMapper();
+        mapper = new SandwichToSandwichSchemaMapper();
     }
 
     @Test
-    void testToSchemaWithNullSandwich() {
+    void testMapWithNullSandwich() {
         assertThrows(
                 NullPointerException.class,
-                () -> mapper.toSchema(null),
+                () -> mapper.map(null),
                 "Map to schema with null sandwich should throw");
     }
 
     @Test
-    void testToSchemaWithValidSandwich() {
-        var schema = mapper.toSchema(EXPECTED_SANDWICH);
+    void testMapWithValidSandwich() {
+        var schema = mapper.map(EXPECTED_SANDWICH);
         assertEquals(EXPECTED_SANDWICH_ID.value(), schema.sandwichId(), "Sandwich and schema should match");
     }
 
     @Test
-    void testToDomainWithNullSchema() {
+    void testReverseMapWithNullSchema() {
         assertThrows(
                 NullPointerException.class,
-                () -> mapper.toDomain(null),
+                () -> mapper.reverseMap(null),
                 "Map to schema with null sandwich should throw");
     }
 
     @Test
-    void testToDomainWithValidSchema() {
-        var sandwich = mapper.toDomain(EXPECTED_SANDWICH_SCHEMA);
+    void testReverseMapWithValidSchema() {
+        var sandwich = mapper.reverseMap(EXPECTED_SANDWICH_SCHEMA);
         assertEquals(EXPECTED_SANDWICH_ID.value(), sandwich.id().value(), "Sandwich and schema should match");
     }
 

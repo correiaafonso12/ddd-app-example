@@ -11,15 +11,15 @@ import app.ddd.gsandwiches.sandwich.domain.valueobjects.Name;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.SandwichId;
 import app.ddd.gsandwiches.sandwich.persistence.repositories.SandwichRepository;
 import app.ddd.gsandwiches.sandwich.persistence.schema.SandwichSchema;
-import app.ddd.gsandwiches.shared.persistence.Mapper;
+import app.ddd.gsandwiches.shared.mappers.BiDirectionalMapper;
 
 @Repository
 class SandwichDaoImpl implements SandwichDao {
 
     private final SandwichRepository repository;
-    private final Mapper<Sandwich, SandwichSchema> mapper;
+    private final BiDirectionalMapper<Sandwich, SandwichSchema> mapper;
 
-    public SandwichDaoImpl(SandwichRepository repository, Mapper<Sandwich, SandwichSchema> mapper) {
+    public SandwichDaoImpl(SandwichRepository repository, BiDirectionalMapper<Sandwich, SandwichSchema> mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
@@ -27,14 +27,14 @@ class SandwichDaoImpl implements SandwichDao {
     @Override
     public List<Sandwich> getAll() {
         return repository.findAll().stream()
-                .map(mapper::toDomain)
+                .map(mapper::reverseMap)
                 .toList();
     }
 
     @Override
     public Optional<Sandwich> getById(SandwichId id) {
         return repository.findBySandwichId(id.value())
-                .map(mapper::toDomain);
+                .map(mapper::reverseMap);
     }
 
     @Override
@@ -45,7 +45,7 @@ class SandwichDaoImpl implements SandwichDao {
 
     @Override
     public void save(Sandwich sandwich) {
-        var schema = mapper.toSchema(sandwich);
+        var schema = mapper.map(sandwich);
         repository.save(schema);
     }
 
