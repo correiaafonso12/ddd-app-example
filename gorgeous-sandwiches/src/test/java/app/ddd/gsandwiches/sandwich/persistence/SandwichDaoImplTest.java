@@ -20,21 +20,19 @@ import org.junit.jupiter.api.Test;
 
 import app.ddd.gsandwiches.sandwich.domain.Sandwich;
 import app.ddd.gsandwiches.sandwich.persistence.repositories.SandwichRepository;
-import app.ddd.gsandwiches.sandwich.persistence.schema.SandwichSchema;
-import app.ddd.gsandwiches.shared.mappers.BiDirectionalMapper;
+import app.ddd.gsandwiches.shared.mapper.registry.MapperRegistry;
 
 public class SandwichDaoImplTest {
 
     private SandwichRepository repositoryMock;
-    private BiDirectionalMapper<Sandwich, SandwichSchema> mapperMock;
+    private MapperRegistry mapperRegistryMock;
     private SandwichDaoImpl dao;
 
     @BeforeEach
-    @SuppressWarnings("unchecked")
     public void setup() {
         repositoryMock = mock(SandwichRepository.class);
-        mapperMock = mock(BiDirectionalMapper.class);
-        dao = new SandwichDaoImpl(repositoryMock, mapperMock);
+        mapperRegistryMock = mock(MapperRegistry.class);
+        dao = new SandwichDaoImpl(repositoryMock, mapperRegistryMock);
     }
 
     @Test
@@ -70,7 +68,7 @@ public class SandwichDaoImplTest {
     @Test
     void testGetByIdWithExistingId() {
         when(repositoryMock.findBySandwichId(any())).thenReturn(Optional.of(EXPECTED_SANDWICH_SCHEMA));
-        when(mapperMock.reverseMap(EXPECTED_SANDWICH_SCHEMA)).thenReturn(EXPECTED_SANDWICH);
+        when(mapperRegistryMock.findAndMap(EXPECTED_SANDWICH_SCHEMA, Sandwich.class)).thenReturn(EXPECTED_SANDWICH);
         var sandwichOptional = dao.getById(EXPECTED_SANDWICH_ID);
         assertTrue(sandwichOptional.isPresent(), "Optional result should have a value");
     }

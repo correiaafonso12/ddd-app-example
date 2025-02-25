@@ -2,7 +2,6 @@ package app.ddd.gsandwiches.sandwich.persistence.mappers;
 
 import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_SANDWICH;
 import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_SANDWICH_ID;
-import static app.ddd.gsandwiches.sandwich.persistence.SandwichSchemaTestFixture.EXPECTED_SANDWICH_SCHEMA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -30,20 +29,6 @@ public class SandwichToSandwichSchemaMapperTest {
     void testMapWithValidSandwich() {
         var schema = mapper.map(EXPECTED_SANDWICH);
         assertEquals(EXPECTED_SANDWICH_ID.value(), schema.sandwichId(), "Sandwich and schema should match");
-    }
-
-    @Test
-    void testReverseMapWithNullSchema() {
-        assertThrows(
-                NullPointerException.class,
-                () -> mapper.reverseMap(null),
-                "Map to schema with null sandwich should throw");
-    }
-
-    @Test
-    void testReverseMapWithValidSchema() {
-        var sandwich = mapper.reverseMap(EXPECTED_SANDWICH_SCHEMA);
-        assertEquals(EXPECTED_SANDWICH_ID.value(), sandwich.id().value(), "Sandwich and schema should match");
     }
 
 }

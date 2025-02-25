@@ -11,41 +11,40 @@ import app.ddd.gsandwiches.sandwich.domain.valueobjects.Name;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.SandwichId;
 import app.ddd.gsandwiches.sandwich.persistence.repositories.SandwichRepository;
 import app.ddd.gsandwiches.sandwich.persistence.schema.SandwichSchema;
-import app.ddd.gsandwiches.shared.mappers.BiDirectionalMapper;
+import app.ddd.gsandwiches.shared.mapper.registry.MapperRegistry;
 
 @Repository
 class SandwichDaoImpl implements SandwichDao {
 
     private final SandwichRepository repository;
-    private final BiDirectionalMapper<Sandwich, SandwichSchema> mapper;
+    private final MapperRegistry registry;
 
-    public SandwichDaoImpl(SandwichRepository repository, BiDirectionalMapper<Sandwich, SandwichSchema> mapper) {
+    public SandwichDaoImpl(SandwichRepository repository, MapperRegistry registry) {
         this.repository = repository;
-        this.mapper = mapper;
+        this.registry = registry;
     }
 
     @Override
     public List<Sandwich> getAll() {
         return repository.findAll().stream()
-                .map(mapper::reverseMap)
+                .map(s -> registry.findAndMap(s, Sandwich.class))
                 .toList();
     }
 
     @Override
     public Optional<Sandwich> getById(SandwichId id) {
         return repository.findBySandwichId(id.value())
-                .map(mapper::reverseMap);
+                .map(s -> registry.findAndMap(s, Sandwich.class));
     }
 
     @Override
     public Boolean existsByName(Name name) {
-        return repository.findByName(name.value())
-                .isPresent();
+        return repository.findByName(name.value()).isPresent();
     }
 
     @Override
     public void save(Sandwich sandwich) {
-        var schema = mapper.map(sandwich);
+        var schema = registry.findAndMap(sandwich, SandwichSchema.class);
         repository.save(schema);
     }
 
