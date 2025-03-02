@@ -42,10 +42,10 @@ public interface SandwichApi {
     @Operation(summary = "Creates Sandwich", description = "Creates a new Sandwich")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Success"),
-            @ApiResponse(responseCode = "409", description = "Conflict", content = {
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = {
                     @Content(schema = @Schema(implementation = ErrorResponseDto.class))
             }),
-            @ApiResponse(responseCode = "400", description = "Bad Request", content = {
+            @ApiResponse(responseCode = "409", description = "Conflict", content = {
                     @Content(schema = @Schema(implementation = ErrorResponseDto.class))
             }),
     })

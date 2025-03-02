@@ -60,11 +60,8 @@ class SandwichController implements SandwichApi {
     }
 
     private ResponseEntity<Object> handleCreated(Long id) {
-        return created(
-                fromMethodCall(on(SandwichController.class).getById(id))
-                        .build()
-                        .toUri())
-                .build();
+        var location = fromMethodCall(on(SandwichController.class).getById(id)).build();
+        return created(location.toUri()).build();
     }
 
 }
