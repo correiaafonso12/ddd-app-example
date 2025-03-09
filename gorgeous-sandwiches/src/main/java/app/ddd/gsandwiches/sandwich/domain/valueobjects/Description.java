@@ -11,11 +11,6 @@ public record Description(String value) implements ValueObject {
     }
 
     @Override
-    public boolean sameValueAs(ValueObject other) {
-        return other instanceof Description d && value.equals(d.value);
-    }
-
-    @Override
     public Description copy() {
         return new Description(value);
     }

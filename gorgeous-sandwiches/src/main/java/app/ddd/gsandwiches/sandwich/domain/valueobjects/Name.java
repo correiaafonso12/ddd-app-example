@@ -11,11 +11,6 @@ public record Name(String value) implements ValueObject {
     }
 
     @Override
-    public boolean sameValueAs(ValueObject other) {
-        return other instanceof Name n && value.equals(n.value);
-    }
-
-    @Override
     public Name copy() {
         return new Name(value);
     }

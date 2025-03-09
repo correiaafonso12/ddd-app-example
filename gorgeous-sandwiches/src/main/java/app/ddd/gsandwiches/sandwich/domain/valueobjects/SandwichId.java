@@ -15,11 +15,6 @@ public record SandwichId(Long value) implements ValueObject {
     }
 
     @Override
-    public boolean sameValueAs(ValueObject other) {
-        return other instanceof SandwichId id && value.equals(id.value);
-    }
-
-    @Override
     public SandwichId copy() {
         return new SandwichId(value);
     }

@@ -19,43 +19,39 @@ public abstract class ValueObjectTest<T extends ValueObject> {
     }
 
     @Test
-    void testSameValueAsWithNull() {
-        assertFalse(instance.sameValueAs(null), "Value object shouldn't have the same value as null");
+    void testEqualsWithSameValueObject() {
+        assertTrue(instance.equals(instance), "Value object should be equal to itself");
     }
 
     @Test
-    void testSameValueAsWithOtherValueObject() {
+    void testEqualsWithNull() {
+        assertFalse(instance.equals(null), "Value object shouldn't equal null");
+    }
+
+    @Test
+    void testEqualsWithOtherValueObject() {
         var mockValueObject = mock(ValueObject.class);
         assertFalse(
-                instance.sameValueAs(mockValueObject),
-                "Value object shouldn't compare with other value objects implementations");
+                instance.equals(mockValueObject),
+                "Value object shouldn't be equal to other value object's implementations");
     }
 
     @Test
-    void testSameValueAsWithDifferentValueObject() {
-        var mockInstance = mock(instance.getClass());
-        assertFalse(
-                instance.sameValueAs(mockInstance),
-                "Value object shouldn't have the same value when compared with a different value object");
+    void testEqualsWithDifferentValueObject() {
+        var mockValueObject = mock(instance.getClass());
+        assertFalse(instance.equals(mockValueObject), "Value object shouldn't be equal to a different value object");
     }
 
     @Test
-    void testSameValueAsWithSameObject() {
-        assertTrue(instance.sameValueAs(instance), "Value object should have the same value when compared with itself");
-    }
-
-    @Test
-    void testSameValueAsWithEqualValueObject() {
-        var other = instance.copy();
-        assertTrue(
-                instance.sameValueAs(other),
-                "Value object should have the same value when compared with an equal value object");
+    void testEqualsWithEqualsValueObject() {
+        var other = createInstance();
+        assertTrue(instance.equals(other), "Value object should be equal to a value object with the same ID");
     }
 
     @Test
     void testCopy() {
         var copy = instance.copy();
         assertTrue(instance != copy, "Copied object must not be the same as original object");
-        assertTrue(instance.sameValueAs(copy), "Copied object value must be the same as original value");
+        assertTrue(instance.equals(copy), "Copied object value must be the same as original value");
     }
 }

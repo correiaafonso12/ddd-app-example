@@ -16,11 +16,6 @@ public record Price(Double value) implements ValueObject {
     }
 
     @Override
-    public boolean sameValueAs(ValueObject other) {
-        return other instanceof Price p && value.equals(p.value);
-    }
-
-    @Override
     public Price copy() {
         return new Price(value);
     }
