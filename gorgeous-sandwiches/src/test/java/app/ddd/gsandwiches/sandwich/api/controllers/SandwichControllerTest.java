@@ -25,21 +25,25 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import app.ddd.gsandwiches.sandwich.application.SandwichService;
+import app.ddd.gsandwiches.sandwich.domain.Sandwich;
 import app.ddd.gsandwiches.shared.api.dto.response.ErrorResponseDto;
 import app.ddd.gsandwiches.shared.api.handlers.ExceptionHandler;
 import app.ddd.gsandwiches.shared.application.result.Result;
+import app.ddd.gsandwiches.shared.mapper.registry.MapperRegistry;
 
 public class SandwichControllerTest {
 
     private SandwichService serviceMock;
+    private MapperRegistry mapperRegistryMock;
     private ExceptionHandler exceptionHandlerMock;
     private SandwichController controller;
 
     @BeforeEach
     public void init() {
         serviceMock = mock(SandwichService.class);
+        mapperRegistryMock = mock(MapperRegistry.class);
         exceptionHandlerMock = mock(ExceptionHandler.class);
-        controller = new SandwichController(serviceMock, exceptionHandlerMock);
+        controller = new SandwichController(serviceMock, mapperRegistryMock, exceptionHandlerMock);
     }
 
     @Test
@@ -80,6 +84,7 @@ public class SandwichControllerTest {
 
     @Test
     void testCreateFailed() {
+        when(mapperRegistryMock.findAndMap(EXPECTED_CREATE_SANDWICH_DTO, Sandwich.class)).thenReturn(EXPECTED_SANDWICH);
         when(serviceMock.create(any())).thenReturn(Result.empty().verify(() -> false, Exception::new));
         when(exceptionHandlerMock.handle(any())).thenReturn(badRequest().body(new ErrorResponseDto(new Exception())));
         var response = controller.create(EXPECTED_CREATE_SANDWICH_DTO);
@@ -91,6 +96,7 @@ public class SandwichControllerTest {
 
     @Test
     void testCreateSuccessful() {
+        when(mapperRegistryMock.findAndMap(EXPECTED_CREATE_SANDWICH_DTO, Sandwich.class)).thenReturn(EXPECTED_SANDWICH);
         when(serviceMock.create(any())).thenReturn(Result.empty());
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));

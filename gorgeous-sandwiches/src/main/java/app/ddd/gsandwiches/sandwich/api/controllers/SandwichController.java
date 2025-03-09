@@ -15,20 +15,23 @@ import app.ddd.gsandwiches.sandwich.api.dto.request.CreateSandwichDto;
 import app.ddd.gsandwiches.sandwich.api.dto.response.ReadSandwichDto;
 import app.ddd.gsandwiches.sandwich.application.SandwichService;
 import app.ddd.gsandwiches.sandwich.domain.Sandwich;
-import app.ddd.gsandwiches.sandwich.domain.valueobjects.Description;
-import app.ddd.gsandwiches.sandwich.domain.valueobjects.Name;
-import app.ddd.gsandwiches.sandwich.domain.valueobjects.Price;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.SandwichId;
 import app.ddd.gsandwiches.shared.api.handlers.ExceptionHandler;
+import app.ddd.gsandwiches.shared.mapper.registry.MapperRegistry;
 
 @RestController
 class SandwichController implements SandwichApi {
 
     private final SandwichService service;
+    private final MapperRegistry mapperRegistry;
     private final ExceptionHandler exceptionHandler;
 
-    public SandwichController(SandwichService service, ExceptionHandler exceptionHandler) {
+    public SandwichController(
+            SandwichService service,
+            MapperRegistry mapperRegistry,
+            ExceptionHandler exceptionHandler) {
         this.service = service;
+        this.mapperRegistry = mapperRegistry;
         this.exceptionHandler = exceptionHandler;
     }
 
@@ -48,11 +51,7 @@ class SandwichController implements SandwichApi {
 
     @Override
     public ResponseEntity<?> create(CreateSandwichDto dto) {
-        var sandwich = new Sandwich(
-                new SandwichId(dto.sandwichId()),
-                new Name(dto.name()),
-                new Price(dto.price()),
-                new Description(dto.description()));
+        var sandwich = mapperRegistry.findAndMap(dto, Sandwich.class);
 
         return service.create(sandwich).fold(
                 () -> handleCreated(dto.sandwichId()),
