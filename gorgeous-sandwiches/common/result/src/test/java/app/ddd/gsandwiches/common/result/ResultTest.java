@@ -1,4 +1,4 @@
-package app.ddd.gsandwiches.result;
+package app.ddd.gsandwiches.common.result;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;

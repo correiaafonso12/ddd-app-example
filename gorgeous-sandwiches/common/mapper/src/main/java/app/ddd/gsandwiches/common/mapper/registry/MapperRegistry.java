@@ -1,8 +1,8 @@
-package app.ddd.gsandwiches.mapper.registry;
+package app.ddd.gsandwiches.common.mapper.registry;
 
 import java.util.Optional;
 
-import app.ddd.gsandwiches.mapper.Mapper;
+import app.ddd.gsandwiches.common.mapper.Mapper;
 
 /**
  * Generic registry for Mappers

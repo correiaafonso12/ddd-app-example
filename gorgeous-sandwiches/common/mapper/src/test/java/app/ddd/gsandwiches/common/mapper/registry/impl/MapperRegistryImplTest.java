@@ -1,4 +1,4 @@
-package app.ddd.gsandwiches.mapper.registry.impl;
+package app.ddd.gsandwiches.common.mapper.registry.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,8 +12,8 @@ import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import app.ddd.gsandwiches.mapper.Mapper;
-import app.ddd.gsandwiches.mapper.registry.MapperRegistry;
+import app.ddd.gsandwiches.common.mapper.Mapper;
+import app.ddd.gsandwiches.common.mapper.registry.MapperRegistry;
 
 public class MapperRegistryImplTest {
 

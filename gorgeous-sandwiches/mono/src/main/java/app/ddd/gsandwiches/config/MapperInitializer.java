@@ -6,7 +6,7 @@ import app.ddd.gsandwiches.sandwich.api.mappers.CreateSandwichDtoToSandwichMappe
 import app.ddd.gsandwiches.sandwich.persistence.mappers.SandwichSchemaToSandwichMapper;
 import app.ddd.gsandwiches.sandwich.persistence.mappers.SandwichToSandwichSchemaMapper;
 import app.ddd.gsandwiches.shared.config.Initializer;
-import app.ddd.gsandwiches.mapper.registry.MapperRegistry;
+import app.ddd.gsandwiches.common.mapper.registry.MapperRegistry;
 
 @Component
 class MapperInitializer extends Initializer {

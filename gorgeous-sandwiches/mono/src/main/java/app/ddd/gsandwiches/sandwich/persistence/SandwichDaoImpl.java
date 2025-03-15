@@ -11,7 +11,7 @@ import app.ddd.gsandwiches.sandwich.domain.valueobjects.Name;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.SandwichId;
 import app.ddd.gsandwiches.sandwich.persistence.repositories.SandwichRepository;
 import app.ddd.gsandwiches.sandwich.persistence.schema.SandwichSchema;
-import app.ddd.gsandwiches.mapper.registry.MapperRegistry;
+import app.ddd.gsandwiches.common.mapper.registry.MapperRegistry;
 
 @Repository
 class SandwichDaoImpl implements SandwichDao {

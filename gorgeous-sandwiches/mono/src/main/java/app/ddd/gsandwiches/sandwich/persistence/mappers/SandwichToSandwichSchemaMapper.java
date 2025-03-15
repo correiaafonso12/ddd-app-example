@@ -2,7 +2,7 @@ package app.ddd.gsandwiches.sandwich.persistence.mappers;
 
 import app.ddd.gsandwiches.sandwich.domain.Sandwich;
 import app.ddd.gsandwiches.sandwich.persistence.schema.SandwichSchema;
-import app.ddd.gsandwiches.mapper.Mapper;
+import app.ddd.gsandwiches.common.mapper.Mapper;
 
 public class SandwichToSandwichSchemaMapper implements Mapper<Sandwich, SandwichSchema> {
 

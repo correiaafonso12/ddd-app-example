@@ -6,7 +6,7 @@ import app.ddd.gsandwiches.sandwich.domain.valueobjects.Description;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.Name;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.Price;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.SandwichId;
-import app.ddd.gsandwiches.mapper.Mapper;
+import app.ddd.gsandwiches.common.mapper.Mapper;
 
 public class CreateSandwichDtoToSandwichMapper implements Mapper<CreateSandwichDto, Sandwich> {
 

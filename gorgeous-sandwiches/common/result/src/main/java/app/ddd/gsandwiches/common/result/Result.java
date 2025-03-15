@@ -1,4 +1,4 @@
-package app.ddd.gsandwiches.result;
+package app.ddd.gsandwiches.common.result;
 
 import static java.util.Objects.requireNonNull;
 

@@ -1,4 +1,4 @@
-package app.ddd.gsandwiches.mapper;
+package app.ddd.gsandwiches.common.mapper;
 
 /**
  * Mapper to translate from Source class to Target class

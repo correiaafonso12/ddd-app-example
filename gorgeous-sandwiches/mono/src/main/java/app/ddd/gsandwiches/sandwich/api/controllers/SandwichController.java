@@ -17,7 +17,7 @@ import app.ddd.gsandwiches.sandwich.application.SandwichService;
 import app.ddd.gsandwiches.sandwich.domain.Sandwich;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.SandwichId;
 import app.ddd.gsandwiches.shared.api.handlers.ExceptionHandler;
-import app.ddd.gsandwiches.mapper.registry.MapperRegistry;
+import app.ddd.gsandwiches.common.mapper.registry.MapperRegistry;
 
 @RestController
 class SandwichController implements SandwichApi {

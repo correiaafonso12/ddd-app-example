@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import app.ddd.gsandwiches.result.Result;
+import app.ddd.gsandwiches.common.result.Result;
 import app.ddd.gsandwiches.sandwich.application.SandwichService;
 import app.ddd.gsandwiches.sandwich.application.exceptions.SandwichWithNonUniqueIdException;
 import app.ddd.gsandwiches.sandwich.application.exceptions.SandwichWithNonUniqueNameException;

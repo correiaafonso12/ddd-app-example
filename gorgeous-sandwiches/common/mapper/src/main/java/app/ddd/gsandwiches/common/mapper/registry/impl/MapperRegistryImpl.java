@@ -1,4 +1,4 @@
-package app.ddd.gsandwiches.mapper.registry.impl;
+package app.ddd.gsandwiches.common.mapper.registry.impl;
 
 import static java.util.Objects.requireNonNull;
 
@@ -9,8 +9,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import app.ddd.gsandwiches.mapper.Mapper;
-import app.ddd.gsandwiches.mapper.registry.MapperRegistry;
+import app.ddd.gsandwiches.common.mapper.Mapper;
+import app.ddd.gsandwiches.common.mapper.registry.MapperRegistry;
 
 @Component
 class MapperRegistryImpl implements MapperRegistry {

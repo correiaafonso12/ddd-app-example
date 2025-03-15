@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import app.ddd.gsandwiches.sandwich.domain.Sandwich;
 import app.ddd.gsandwiches.sandwich.persistence.repositories.SandwichRepository;
-import app.ddd.gsandwiches.mapper.registry.MapperRegistry;
+import app.ddd.gsandwiches.common.mapper.registry.MapperRegistry;
 
 public class SandwichDaoImplTest {
 
