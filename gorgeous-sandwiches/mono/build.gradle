@@ -1,0 +1,79 @@
+plugins {
+	id 'java'
+    id 'java-test-fixtures'
+	id 'org.springframework.boot' version '3.4.1'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'app.ddd'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Spring Web Services
+    // implementation 'org.springframework:spring-webmvc:6.1.6'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.apache.commons:commons-lang3'
+
+    // Spring JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // DB Drivers
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Spring OpenAPI
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4'
+
+    // // Spring Security Oauth2 
+    // implementation 'org.springframework.boot:spring-boot-starter-security'
+    // implementation 'org.springframework.security:spring-security-oauth2-client'
+    // implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
+    // Tests
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // testImplementation 'org.springframework.security:spring-security-test'
+
+    // Integration Tests
+    // testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // //Keycloak
+    // implementation 'org.keycloak:keycloak-admin-client:24.0.5'
+
+    // //Healthchecks
+    // implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // // Other
+    // implementation 'no.gorandalum:fluent-result:1.5.0'
+
+
+
+
+    
+    implementation(project(':common:mapper'))
+    implementation(project(':common:result'))
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+test {
+    // Show standard output and error in the console
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+}

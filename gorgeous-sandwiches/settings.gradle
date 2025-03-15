@@ -1,1 +1,5 @@
 rootProject.name = 'gsandwiches'
+
+include(":mono")
+include(":common:mapper")
+include(":common:result")
