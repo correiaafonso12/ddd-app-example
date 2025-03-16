@@ -1,0 +1,7 @@
+subprojects {
+    
+    tasks.withType(Jar) {
+        def moduleName = project.path.replace(':', '-').replaceAll('^-+', '')
+        archiveBaseName.set(moduleName)
+    }
+}
