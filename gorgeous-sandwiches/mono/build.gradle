@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	id 'java-library'
     id 'java-test-fixtures'
 	id 'org.springframework.boot' version '3.4.1'
 	id 'io.spring.dependency-management' version '1.1.7'
@@ -64,6 +65,7 @@ dependencies {
     
     implementation(project(':common:mapper'))
     implementation(project(':common:result'))
+    api(project(':core:domain'))
 }
 
 tasks.named('test') {

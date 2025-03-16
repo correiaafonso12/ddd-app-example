@@ -3,7 +3,7 @@ package app.ddd.gsandwiches.sandwich.domain.valueobjects;
 import static org.apache.commons.lang3.Validate.inclusiveBetween;
 import static org.apache.commons.lang3.Validate.notNull;
 
-import app.ddd.gsandwiches.shared.domain.ValueObject;
+import app.ddd.gsandwiches.core.domain.ValueObject;
 
 public record Price(Double value) implements ValueObject {
 

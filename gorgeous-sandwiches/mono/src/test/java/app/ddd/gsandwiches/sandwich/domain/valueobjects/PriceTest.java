@@ -3,17 +3,11 @@ package app.ddd.gsandwiches.sandwich.domain.valueobjects;
 import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_PRICE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import app.ddd.gsandwiches.shared.domain.ValueObjectTest;
-
-public class PriceTest extends ValueObjectTest<Price> {
-
-    @Override
-    protected Price createInstance() {
-        return EXPECTED_PRICE;
-    }
+public class PriceTest {
 
     @Test
     void testCreateNullPrice() {
@@ -44,6 +38,13 @@ public class PriceTest extends ValueObjectTest<Price> {
         var value = 10.0;
         var price = new Price(value);
         assertEquals(value, price.value(), "Price must be inputted value");
+    }
+
+    @Test
+    void testCopy() {
+        var copy = EXPECTED_PRICE.copy();
+        assertTrue(EXPECTED_PRICE != copy, "Copy should not be original object");
+        assertTrue(EXPECTED_PRICE.equals(copy), "Copy should equal original object");
     }
 
 }

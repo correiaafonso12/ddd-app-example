@@ -1,6 +1,6 @@
-package app.ddd.gsandwiches.shared.domain;
+package app.ddd.gsandwiches.core.domain;
 
-import static org.apache.commons.lang3.Validate.notNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * An entity, as explained in the DDD book.
@@ -13,8 +13,7 @@ public abstract class Entity<ID extends ValueObject> {
     private ID id;
 
     protected Entity(ID id) {
-        notNull(id, "Entities must have an ID");
-        this.id = id;
+        this.id = requireNonNull(id, "Entities must have an ID");
     }
 
     public ID id() {

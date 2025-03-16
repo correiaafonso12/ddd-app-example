@@ -3,17 +3,11 @@ package app.ddd.gsandwiches.sandwich.domain.valueobjects;
 import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_DESCRIPTION;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import app.ddd.gsandwiches.shared.domain.ValueObjectTest;
-
-public class DescriptionTest extends ValueObjectTest<Description> {
-
-    @Override
-    protected Description createInstance() {
-        return EXPECTED_DESCRIPTION;
-    }
+public class DescriptionTest {
 
     @Test
     void testCreateNullDescription() {
@@ -44,6 +38,13 @@ public class DescriptionTest extends ValueObjectTest<Description> {
         var value = "smt";
         var description = new Description(value);
         assertEquals(value, description.value(), "Description must be inputted value");
+    }
+
+    @Test
+    void testCopy() {
+        var copy = EXPECTED_DESCRIPTION.copy();
+        assertTrue(EXPECTED_DESCRIPTION != copy, "Copy should not be original object");
+        assertTrue(EXPECTED_DESCRIPTION.equals(copy), "Copy should equal original object");
     }
 
 }

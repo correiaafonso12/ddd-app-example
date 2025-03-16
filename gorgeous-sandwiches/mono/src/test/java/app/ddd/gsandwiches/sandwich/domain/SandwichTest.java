@@ -6,18 +6,14 @@ import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_P
 import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_SANDWICH;
 import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_SANDWICH_ID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.Test;
 
-import app.ddd.gsandwiches.shared.domain.EntityTest;
-
-public class SandwichTest extends EntityTest<Sandwich> {
-
-    @Override
-    protected Sandwich createInstance() {
-        return EXPECTED_SANDWICH;
-    }
+public class SandwichTest {
 
     @Test
     void testCreateWithNullSandwichId() {
@@ -58,5 +54,27 @@ public class SandwichTest extends EntityTest<Sandwich> {
         assertEquals(EXPECTED_NAME, sandwich.name(), "Name must be inputted value");
         assertEquals(EXPECTED_PRICE, sandwich.price(), "Price must be inputted value");
         assertEquals(EXPECTED_DESCRIPTION, sandwich.description(), "Description must be inputted value");
+    }
+
+    @Test
+    void testEqualsWithSameSandwich() {
+        assertTrue(EXPECTED_SANDWICH.equals(EXPECTED_SANDWICH), "Sandwich should be equal to itself");
+    }
+
+    @Test
+    void testEqualsWithNull() {
+        assertFalse(EXPECTED_SANDWICH.equals(null), "Sandwich shouldn't equal null");
+    }
+
+    @Test
+    void testEqualsWithDifferentSandwich() {
+        var mockEntity = mock(EXPECTED_SANDWICH.getClass());
+        assertFalse(EXPECTED_SANDWICH.equals(mockEntity), "Sandwich shouldn't be equal to a different sandwich");
+    }
+
+    @Test
+    void testEqualsWithEqualSandwich() {
+        var other = new Sandwich(EXPECTED_SANDWICH_ID, EXPECTED_NAME, EXPECTED_PRICE, EXPECTED_DESCRIPTION);
+        assertTrue(EXPECTED_SANDWICH.equals(other), "Sandwich should be equal to a sandwich with the same ID");
     }
 }

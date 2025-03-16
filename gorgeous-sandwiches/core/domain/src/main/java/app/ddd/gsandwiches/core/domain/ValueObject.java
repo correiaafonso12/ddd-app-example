@@ -1,4 +1,4 @@
-package app.ddd.gsandwiches.shared.domain;
+package app.ddd.gsandwiches.core.domain;
 
 /**
  * A value object, as described in the DDD book.
