@@ -11,9 +11,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatusCode;
 
+import app.ddd.gsandwiches.core.exceptions.ApplicationException;
+import app.ddd.gsandwiches.core.exceptions.ConflictException;
 import app.ddd.gsandwiches.shared.api.handlers.ExceptionHandler;
-import app.ddd.gsandwiches.shared.application.exceptions.ApplicationException;
-import app.ddd.gsandwiches.shared.application.exceptions.ConflictException;
 
 public class ExceptionHandlerImplTest {
 

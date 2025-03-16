@@ -1,8 +1,7 @@
-package app.ddd.gsandwiches.shared.application.exceptions;
+package app.ddd.gsandwiches.core.exceptions;
 
 /**
- * Base exception for the system.
- * Should be extended with custom exceptions.
+ * Exception for generic expected errors
  */
 public abstract class ApplicationException extends RuntimeException {
 

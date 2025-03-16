@@ -1,6 +1,6 @@
 package app.ddd.gsandwiches.sandwich.application.exceptions;
 
-import app.ddd.gsandwiches.shared.application.exceptions.ConflictException;
+import app.ddd.gsandwiches.core.exceptions.ConflictException;
 
 public class SandwichWithNonUniqueIdException extends ConflictException {
 

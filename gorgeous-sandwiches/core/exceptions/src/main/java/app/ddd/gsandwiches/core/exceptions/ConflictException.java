@@ -1,9 +1,9 @@
-package app.ddd.gsandwiches.shared.application.exceptions;
+package app.ddd.gsandwiches.core.exceptions;
 
 /**
- * Indicates that a conflict with another entity ocurred
+ * Exception for errors representing conflicts with the system state
  */
-public abstract class ConflictException extends ApplicationException {
+public abstract class ConflictException extends RuntimeException {
 
     public ConflictException(String message) {
         super(message);
