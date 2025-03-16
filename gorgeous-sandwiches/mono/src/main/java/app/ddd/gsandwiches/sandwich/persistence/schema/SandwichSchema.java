@@ -1,6 +1,6 @@
 package app.ddd.gsandwiches.sandwich.persistence.schema;
 
-import app.ddd.gsandwiches.shared.persistence.BaseSchema;
+import app.ddd.gsandwiches.core.persistence.BaseSchema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 

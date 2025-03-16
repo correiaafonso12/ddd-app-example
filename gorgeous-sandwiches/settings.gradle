@@ -6,3 +6,4 @@ include(":common:mapper")
 include(":common:result")
 
 include(":core:domain")
+include(":core:persistence")
