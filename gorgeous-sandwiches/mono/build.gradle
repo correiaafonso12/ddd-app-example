@@ -66,6 +66,8 @@ dependencies {
     implementation(project(':common:initializer'))
     implementation(project(':common:mapper'))
     implementation(project(':common:result'))
+
+    api(project(':core:api'))
     api(project(':core:domain'))
     implementation(project(':core:exceptions'))
     implementation(project(':core:persistence'))

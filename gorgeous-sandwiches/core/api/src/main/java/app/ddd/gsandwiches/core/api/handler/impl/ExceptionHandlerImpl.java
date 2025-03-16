@@ -1,4 +1,4 @@
-package app.ddd.gsandwiches.shared.api.handlers.impl;
+package app.ddd.gsandwiches.core.api.handler.impl;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.ResponseEntity.badRequest;
@@ -8,10 +8,10 @@ import static org.springframework.http.ResponseEntity.status;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import app.ddd.gsandwiches.core.api.dto.ErrorResponseDto;
+import app.ddd.gsandwiches.core.api.handler.ExceptionHandler;
 import app.ddd.gsandwiches.core.exceptions.ApplicationException;
 import app.ddd.gsandwiches.core.exceptions.ConflictException;
-import app.ddd.gsandwiches.shared.api.dto.response.ErrorResponseDto;
-import app.ddd.gsandwiches.shared.api.handlers.ExceptionHandler;
 
 @Component
 class ExceptionHandlerImpl implements ExceptionHandler {

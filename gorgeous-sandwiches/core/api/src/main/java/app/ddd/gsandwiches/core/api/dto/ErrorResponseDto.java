@@ -1,11 +1,11 @@
-package app.ddd.gsandwiches.shared.api.dto.response;
+package app.ddd.gsandwiches.core.api.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * Common response DTO for error messages
+ * Generic response DTO for error messages
  */
 public class ErrorResponseDto {
 

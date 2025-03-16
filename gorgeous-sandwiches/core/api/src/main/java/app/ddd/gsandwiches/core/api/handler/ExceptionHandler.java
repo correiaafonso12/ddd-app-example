@@ -1,11 +1,11 @@
-package app.ddd.gsandwiches.shared.api.handlers;
+package app.ddd.gsandwiches.core.api.handler;
 
 import org.springframework.http.ResponseEntity;
 
-import app.ddd.gsandwiches.shared.api.dto.response.ErrorResponseDto;
+import app.ddd.gsandwiches.core.api.dto.ErrorResponseDto;
 
 /**
- * Handle how error responses should be created based on catched exception
+ * Handles application exceptions
  */
 public interface ExceptionHandler {
 

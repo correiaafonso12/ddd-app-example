@@ -3,7 +3,7 @@ package app.ddd.gsandwiches.core.exceptions;
 /**
  * Exception for generic expected errors
  */
-public abstract class ApplicationException extends RuntimeException {
+public class ApplicationException extends RuntimeException {
 
     public ApplicationException(String message) {
         super(message);

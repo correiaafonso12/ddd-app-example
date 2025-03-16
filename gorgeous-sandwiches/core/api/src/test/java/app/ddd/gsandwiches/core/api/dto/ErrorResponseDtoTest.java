@@ -1,4 +1,4 @@
-package app.ddd.gsandwiches.shared.api.dto.response;
+package app.ddd.gsandwiches.core.api.dto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,7 +15,7 @@ public class ErrorResponseDtoTest {
 
     @BeforeEach
     public void setup() {
-        exception = new NullPointerException(ERROR_MESSAGE);
+        exception = new RuntimeException(ERROR_MESSAGE);
     }
 
     @Test
@@ -25,8 +25,8 @@ public class ErrorResponseDtoTest {
         assertEquals(
                 exception.getClass().getSimpleName(),
                 dto.getException(),
-                "Created dto exception should be inputted exception");
-        assertEquals(errors, dto.getErrors(), "Created dto error message should be inputted error message");
+                "DTO exception should be inputted exception");
+        assertEquals(errors, dto.getErrors(), "DTO errors should be inputted errors");
     }
 
     @Test
@@ -35,7 +35,7 @@ public class ErrorResponseDtoTest {
         assertEquals(
                 exception.getClass().getSimpleName(),
                 dto.getException(),
-                "Created dto exception should be inputted exception");
-        assertEquals(List.of(ERROR_MESSAGE), dto.getErrors(), "Created dto error message should be message from exception");
+                "DTO exception should be inputted exception");
+        assertEquals(List.of(ERROR_MESSAGE), dto.getErrors(), "DTO error message should be message from exception");
     }
 }

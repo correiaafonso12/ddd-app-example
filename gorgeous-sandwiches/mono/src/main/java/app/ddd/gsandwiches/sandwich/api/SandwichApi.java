@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import app.ddd.gsandwiches.core.api.dto.ErrorResponseDto;
 import app.ddd.gsandwiches.sandwich.api.dto.request.CreateSandwichDto;
 import app.ddd.gsandwiches.sandwich.api.dto.response.ReadSandwichDto;
-import app.ddd.gsandwiches.shared.api.dto.response.ErrorResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
