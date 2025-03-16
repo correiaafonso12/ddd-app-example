@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import app.ddd.gsandwiches.sandwich.api.mappers.CreateSandwichDtoToSandwichMapper;
 import app.ddd.gsandwiches.sandwich.persistence.mappers.SandwichSchemaToSandwichMapper;
 import app.ddd.gsandwiches.sandwich.persistence.mappers.SandwichToSandwichSchemaMapper;
-import app.ddd.gsandwiches.shared.config.Initializer;
+import app.ddd.gsandwiches.common.initializer.Initializer;
 import app.ddd.gsandwiches.common.mapper.registry.MapperRegistry;
 
 @Component

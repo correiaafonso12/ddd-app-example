@@ -4,6 +4,7 @@ include(":mono")
 
 include(":common:mapper")
 include(":common:result")
+include(":common:initializer")
 
 include(":core:domain")
 include(":core:persistence")

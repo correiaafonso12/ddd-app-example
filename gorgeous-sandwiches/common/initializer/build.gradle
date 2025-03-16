@@ -1,0 +1,17 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'jakarta.annotation:jakarta.annotation-api:3.0.0'
+}
