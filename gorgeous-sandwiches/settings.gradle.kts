@@ -1,4 +1,4 @@
-rootProject.name = 'gsandwiches'
+rootProject.name = "gsandwiches"
 
 include(":mono")
 

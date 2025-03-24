@@ -1,5 +1,5 @@
 plugins {
-    id 'java-library'
+    id("java-library")
 }
 
 java {
@@ -9,5 +9,5 @@ java {
 }
 
 dependencies {
-	implementation 'jakarta.annotation:jakarta.annotation-api:3.0.0'
+    api("jakarta.persistence:jakarta.persistence-api:3.2.0")
 }
