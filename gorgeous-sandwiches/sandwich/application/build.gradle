@@ -8,10 +8,6 @@ java {
 	}
 }
 
-repositories {
-	mavenCentral()
-}
-
 dependencies {
     implementation(project(':common:result'))
     implementation(project(':core:exceptions'))
