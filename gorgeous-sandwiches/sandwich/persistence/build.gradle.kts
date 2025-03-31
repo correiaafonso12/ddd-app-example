@@ -17,7 +17,7 @@ dependencies {
 
     implementation(project(":sandwich:domain"))
 
-    implementation("org.springframework.data:spring-data-jpa:4.0.0-M1") // TODO: This pulls loads of deps. try to workaround it
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.4.4") // TODO: This pulls loads of deps. try to workaround it
     runtimeOnly("com.h2database:h2:2.3.232")
     runtimeOnly("org.postgresql:postgresql:42.7.5") // TODO: Separate drivers
 
