@@ -2,15 +2,12 @@ rootProject.name = "gsandwiches"
 
 include(":launchers:all-in-one")
 
-include(":common:initializer")
+include(":common:exceptionhandler")
 include(":common:mapper")
 include(":common:result")
 
-include(":core:api")
 include(":core:boot")
-include(":core:domain")
-include(":core:exceptions")
-include(":core:persistence")
+include(":core:spi")
 
 include(":sandwich:api")
 include(":sandwich:application")

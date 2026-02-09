@@ -2,11 +2,11 @@ package app.ddd.gsandwiches.sandwich.domain;
 
 import static org.apache.commons.lang3.Validate.notNull;
 
+import app.ddd.gsandwiches.core.spi.domain.Entity;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.Description;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.Name;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.Price;
 import app.ddd.gsandwiches.sandwich.domain.valueobjects.SandwichId;
-import app.ddd.gsandwiches.core.domain.Entity;
 
 public class Sandwich extends Entity<SandwichId> {
 

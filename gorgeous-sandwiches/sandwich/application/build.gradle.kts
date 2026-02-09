@@ -10,11 +10,12 @@ java {
 
 dependencies {
     implementation(project(":common:result"))
-    implementation(project(":core:exceptions"))
+    implementation(project(":core:spi"))
 
     implementation(project(":sandwich:domain"))
 
     implementation("org.springframework:spring-context:6.2.3")
+    implementation("org.springframework.boot:spring-boot-autoconfigure:3.4.13")
 
     testImplementation(testFixtures(project(":sandwich:domain")))  // TODO: Duplicate? See what to do
 

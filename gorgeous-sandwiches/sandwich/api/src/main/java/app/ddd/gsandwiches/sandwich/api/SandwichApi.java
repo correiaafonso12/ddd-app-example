@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import app.ddd.gsandwiches.core.api.dto.ErrorResponseDto;
+import app.ddd.gsandwiches.common.exceptionhandler.dto.ErrorResponseDto;
 import app.ddd.gsandwiches.sandwich.api.dto.request.CreateSandwichDto;
 import app.ddd.gsandwiches.sandwich.api.dto.response.ReadSandwichDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,7 +37,7 @@ public interface SandwichApi {
                     @Content(schema = @Schema(implementation = ReadSandwichDto.class)) }),
             @ApiResponse(responseCode = "404", description = "Not Found") })
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ReadSandwichDto> getById(@PathVariable Long id);
+    public ResponseEntity<ReadSandwichDto> getById(@PathVariable("id") Long id);
 
     @Operation(summary = "Creates Sandwich", description = "Creates a new Sandwich")
     @ApiResponses(value = {
