@@ -10,10 +10,9 @@ java {
 }
 
 dependencies {
-    implementation(project(":common:initializer"))
     implementation(project(":common:mapper"))
 
-    implementation(project(":core:persistence"))
+    implementation(project(":core:spi"))
 
     implementation(project(":sandwich:domain"))
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import app.ddd.gsandwiches.core.api.dto.ErrorResponseDto;
+import app.ddd.gsandwiches.common.exceptionhandler.dto.ErrorResponseDto;
 
 @ControllerAdvice
 public class MethodArgumentNotValidExceptionHandler extends ResponseEntityExceptionHandler {
