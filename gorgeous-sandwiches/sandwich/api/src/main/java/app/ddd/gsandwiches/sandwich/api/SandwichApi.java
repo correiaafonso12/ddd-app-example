@@ -31,7 +31,7 @@ public interface SandwichApi {
     @GetMapping
     public ResponseEntity<List<ReadSandwichDto>> getAll();
 
-    @Operation(summary = "Get Sandwich by Id", description = "Returns a Sandwich with Given ID")
+    @Operation(summary = "Get Sandwich by Id", description = "Returns a Sandwich with given Id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success", content = {
                     @Content(schema = @Schema(implementation = ReadSandwichDto.class)) }),
@@ -39,7 +39,7 @@ public interface SandwichApi {
     @GetMapping(value = "/{id}")
     public ResponseEntity<ReadSandwichDto> getById(@PathVariable("id") Long id);
 
-    @Operation(summary = "Creates Sandwich", description = "Creates a new Sandwich")
+    @Operation(summary = "Create Sandwich", description = "Creates a new Sandwich")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Success"),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = {

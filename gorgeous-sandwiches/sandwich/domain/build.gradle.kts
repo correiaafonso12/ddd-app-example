@@ -10,8 +10,9 @@ java {
 }
 
 dependencies {
-    implementation("org.apache.commons:commons-lang3:3.17.0")
     api(project(":core:spi"))
+
+    implementation("org.apache.commons:commons-lang3:3.17.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.12.0")
     testImplementation("org.junit.platform:junit-platform-launcher:1.12.0")

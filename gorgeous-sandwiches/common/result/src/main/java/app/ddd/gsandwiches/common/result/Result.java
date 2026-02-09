@@ -53,7 +53,7 @@ public class Result<T> {
     }
 
     /**
-     * Create a {@code Result} in success state
+     * Create a {@code Result} in failed state
      * 
      * @param exception exception representing result violation
      * @return a new failed {@code Result}
@@ -95,7 +95,7 @@ public class Result<T> {
      * skips execution
      * 
      * @param predicate     boolean condition to analyze
-     * @param errorSupplier expection supplier in case the condition evaluates to
+     * @param errorSupplier exception supplier in case the condition evaluates to
      *                      {@code false}
      * @return the same {@code Result} if already failed, or condition is true.
      *         A failed {@code Result} otherwise
