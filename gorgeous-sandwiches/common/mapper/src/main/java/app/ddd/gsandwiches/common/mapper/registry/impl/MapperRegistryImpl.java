@@ -12,6 +12,22 @@ import org.springframework.stereotype.Component;
 import app.ddd.gsandwiches.common.mapper.Mapper;
 import app.ddd.gsandwiches.common.mapper.registry.MapperRegistry;
 
+/**
+ * Default {@link MapperRegistry} implementation based on a two-level
+ * {@link java.util.Map} structure.
+ *
+ * <p>
+ * Internally, this registry maintains a
+ * {@code Map<Class<?>, Map<Class<?>, Mapper<?, ?>>>}, where the outer map is
+ * keyed by the source type, and each value is another map keyed by the target
+ * type. The inner map stores the corresponding {@link Mapper} responsible for
+ * converting between the source and target types.
+ * </p>
+ *
+ * <p>
+ * This structure provides constant-time ({@code O(1)}) lookups.
+ * </p>
+ */
 @Component
 class MapperRegistryImpl implements MapperRegistry {
 
