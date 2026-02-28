@@ -3,12 +3,6 @@ plugins {
     id("java-test-fixtures")
 }
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
-}
-
 dependencies {
     api(project(":core:spi"))
 

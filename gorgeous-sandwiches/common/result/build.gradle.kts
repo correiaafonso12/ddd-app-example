@@ -2,12 +2,6 @@ plugins {
     id("java-library")
 }
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
-}
-
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.12.0")
     testImplementation("org.junit.platform:junit-platform-launcher:1.12.0")

@@ -2,12 +2,6 @@ plugins {
     id("java-library")
 }
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
-}
-
 dependencies {
     implementation(project(":common:result"))
     implementation(project(":core:spi"))
