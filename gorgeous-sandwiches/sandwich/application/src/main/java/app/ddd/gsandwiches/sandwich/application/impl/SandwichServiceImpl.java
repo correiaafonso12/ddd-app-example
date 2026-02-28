@@ -36,7 +36,7 @@ class SandwichServiceImpl implements SandwichService {
     public Result<Void> create(Sandwich sandwich) {
         return Result.success()
                 .verify(v -> getById(sandwich.id()).isEmpty(), SandwichWithNonUniqueIdException::new)
-                .verify(v -> !dao.existsByName(sandwich.name()), SandwichWithNonUniqueNameException::new)
+                .verify(v -> dao.getByName(sandwich.name()).isEmpty(), SandwichWithNonUniqueNameException::new)
                 .onSuccess(v -> dao.save(sandwich));
     }
 

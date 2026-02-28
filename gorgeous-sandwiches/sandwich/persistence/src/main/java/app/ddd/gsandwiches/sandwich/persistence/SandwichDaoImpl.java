@@ -27,19 +27,20 @@ class SandwichDaoImpl implements SandwichDao {
     @Override
     public List<Sandwich> getAll() {
         return repository.findAll().stream()
-                .map(s -> registry.findAndMap(s, Sandwich.class))
+                .map(schema -> registry.findAndMap(schema, Sandwich.class))
                 .toList();
     }
 
     @Override
     public Optional<Sandwich> getById(SandwichId id) {
         return repository.findBySandwichId(id.value())
-                .map(s -> registry.findAndMap(s, Sandwich.class));
+                .map(schema -> registry.findAndMap(schema, Sandwich.class));
     }
 
     @Override
-    public Boolean existsByName(Name name) {
-        return repository.findByName(name.value()).isPresent();
+    public Optional<Sandwich> getByName(Name name) {
+        return repository.findByName(name.value())
+                .map(schema -> registry.findAndMap(schema, Sandwich.class));
     }
 
     @Override

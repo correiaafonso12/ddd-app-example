@@ -87,7 +87,7 @@ public class SandwichServiceImplTest {
     @Test
     void testCreateWithExistingSandwichByName() {
         when(daoMock.getById(EXPECTED_SANDWICH_ID)).thenReturn(Optional.empty());
-        when(daoMock.existsByName(EXPECTED_NAME)).thenReturn(true);
+        when(daoMock.getByName(EXPECTED_NAME)).thenReturn(Optional.of(EXPECTED_SANDWICH));
         var result = service.create(EXPECTED_SANDWICH);
         assertTrue(result.failed(), "Should not be able to create sandwich with duplicate name");
         assertInstanceOf(
@@ -99,7 +99,7 @@ public class SandwichServiceImplTest {
     @Test
     void testCreateNewSandwich() {
         when(daoMock.getById(EXPECTED_SANDWICH_ID)).thenReturn(Optional.empty());
-        when(daoMock.existsByName(EXPECTED_NAME)).thenReturn(false);
+        when(daoMock.getByName(EXPECTED_NAME)).thenReturn(Optional.empty());
         var result = service.create(EXPECTED_SANDWICH);
         assertTrue(result.succeeded(), "Should be able to create sandwich");
     }

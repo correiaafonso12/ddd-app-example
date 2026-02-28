@@ -5,7 +5,6 @@ import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_S
 import static app.ddd.gsandwiches.sandwich.domain.SandwichTestFixture.EXPECTED_SANDWICH_ID;
 import static app.ddd.gsandwiches.sandwich.persistence.SandwichSchemaTestFixture.EXPECTED_SANDWICH_SCHEMA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -74,23 +73,26 @@ public class SandwichDaoImplTest {
     }
 
     @Test
-    void testExistsByNameWithNullName() {
+    void testGetByNameWithNullName() {
         assertThrows(
                 NullPointerException.class,
-                () -> dao.existsByName(null),
-                "Exists by name with null name should throw");
+                () -> dao.getByName(null),
+                "Get by name with null name should throw");
     }
 
     @Test
-    void testExistsByNameWithNonExistingName() {
+    void testGetByNameWithNonExistingName() {
         when(repositoryMock.findByName(any())).thenReturn(Optional.empty());
-        assertFalse(dao.existsByName(EXPECTED_NAME), "Should not exist by name");
+        var sandwichOptional = dao.getByName(EXPECTED_NAME);
+        assertTrue(sandwichOptional.isEmpty(), "Optional result should not have a value");
     }
 
     @Test
-    void testExistsByNameWithExistingName() {
+    void testGetByNameWithExistingName() {
         when(repositoryMock.findByName(any())).thenReturn(Optional.of(EXPECTED_SANDWICH_SCHEMA));
-        assertTrue(dao.existsByName(EXPECTED_NAME), "Should exist by name");
+        when(mapperRegistryMock.findAndMap(EXPECTED_SANDWICH_SCHEMA, Sandwich.class)).thenReturn(EXPECTED_SANDWICH);
+        var sandwichOptional = dao.getByName(EXPECTED_NAME);
+        assertTrue(sandwichOptional.isPresent(), "Optional result should have a value");
     }
 
 }

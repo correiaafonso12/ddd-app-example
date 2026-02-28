@@ -13,7 +13,7 @@ public interface SandwichDao {
 
     Optional<Sandwich> getById(SandwichId id);
 
-    Boolean existsByName(Name name);
+    Optional<Sandwich> getByName(Name name);
 
     void save(Sandwich sandwich);
 }
